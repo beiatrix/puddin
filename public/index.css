@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Quando&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+
+/* GLOBAL STYLES */
+
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: 'Quando', Times, serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+:root {
+  --blue: #699bfc;
+  --yellow: #f7b82b;
+}
