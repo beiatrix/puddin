@@ -5,25 +5,23 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import styled from 'styled-components'
 
-const Landing = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>puddin</h1>
-    {isLoggedIn ? (
-      <div>
-        {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-      </div>
-    ) : (
-      <div>
-        {/* The navbar will show these links before you log in */}
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
-      </div>
-    )}
-  </div>
+const Landing = ({handleClick}) => (
+  <StyledLanding>
+    <h1>puddin'</h1>
+    <p>
+      A new platform to <span className="strong">share</span> and{' '}
+      <span className="strong">collaborate</span> for artists
+    </p>
+    <div>
+      {/* The navbar will show these links before you log in */}
+      <Link to="/login">
+        <button>Login</button>
+      </Link>
+      <Link to="/signup">
+        <button id="signup-btn">Sign Up</button>
+      </Link>
+    </div>
+  </StyledLanding>
 )
 
 /**
@@ -56,4 +54,33 @@ Landing.propTypes = {
 /**
  * STYLES
  */
-const styledLanding = styled.main``
+const StyledLanding = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--blue);
+  color: white;
+
+  .strong {
+    font-weight: 600;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  button {
+    margin: 0.5rem;
+  }
+
+  #signup-btn {
+    background: var(--yellow);
+  }
+`

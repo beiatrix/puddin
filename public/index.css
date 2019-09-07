@@ -3,12 +3,23 @@
 
 /* GLOBAL STYLES */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: sans-serif;
 }
 
 h1 {
   font-family: 'Quando', Times, serif;
+  font-size: 4rem;
+}
+
+p {
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+  font-weight: 300;
 }
 
 a {
@@ -27,6 +38,14 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+button {
+  width: 96px;
+  height: 48px;
+  border: none;
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
 }
 
 :root {
