@@ -15,14 +15,16 @@ install:
 before_script:
   - psql -c 'create database "puddin-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 script:
-  - npm test             # test the code
+  - npm test # test the code
   - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: puddin-test
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: jHU42iQzdBcufC1SjsTNIrdSQJSmvDQkNBhU/o3RddijY83vH4dWbD9gfPL9HF7YSEqO3El2Rj8shlyRn4jG1n8+rBi87CO17KOcDR+TabUR/IP6KOMtvxLFGfpnKS6DuXDps6ANry6Kxz7WFFDuR6/xbaNqi9IJAYKiTx0aT+Qy6JkroD5V3kasD8c9XraABnal3/gpCxr8biATwSWa2AUh1toT8S9ZTxFarUjqZOH5bOYIauN8LkcJHyUsGsRnLs+tKmL7AyNqM0R3QdjGvuFnWq/bzYLyehqtsrJrFWeOjElsYzHqWzsm8CqZMF0e+ymm+LC6UgTaRBuOwlhDQq87ctrGhOuCE2enRw7gbKDBdWjeKorKFL3DCxi+phRmFBXxNzvHRs2xsqxZ1QGIi0MsW9sgKcfOCMNwLzmVRfG37jcRwzf4KnPerIwQGaXp24XdAvUneq1BEwZVM+EgY0hpLa0HqlAYu1MjACCEjTn5myaMl9TLo4GXNWnFUje17nF9rUUp1FLBgKeSzckIsdKphyCBiZl0TIgyTFtdMwrwcAG/jVi1lIbXwHgG1JVk2U2B9VPBj6toPWMAIbrSXTy1NGzntWpfn6w8Xvi7yrRlf0Fg964yDJUSP+jj2UDkXiOu3yq3qQNZiAj/7w0LbyOh1EgWcd7z8R2Li62HK44=
