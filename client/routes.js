@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Landing, Login, Signup, UserHome} from './components'
+import {Landing, Login, Signup, UserHome} from './containers'
 import {me} from './store'
 
 /**
