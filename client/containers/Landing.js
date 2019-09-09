@@ -18,7 +18,7 @@ const Landing = ({handleClick}) => (
         <button>Login</button>
       </Link>
       <Link to="/signup">
-        <button id="signup-btn">Sign Up</button>
+        <button className="highlight-btn">Sign Up</button>
       </Link>
     </div>
   </StyledLanding>
@@ -78,9 +78,5 @@ const StyledLanding = styled.main`
 
   button {
     margin: 0.5rem;
-  }
-
-  #signup-btn {
-    background: var(--yellow);
   }
 `

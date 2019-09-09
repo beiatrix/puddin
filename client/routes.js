@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Landing, Login, Signup, UserHome} from './components'
+import {Landing, Login, Signup, UserHome} from './containers'
 import {me} from './store'
 
 /**
@@ -34,7 +34,11 @@ const Routes = props => {
 }
 
 /**
+ *
  * CONTAINER
+ *
+ * While the presence of Redux in 2019 grosses me out, I can't be assed to refactor this. Live and let live my guy
+ *
  */
 const mapState = state => {
   return {

@@ -3,13 +3,21 @@
 
 /* GLOBAL STYLES */
 
-* {
+html {
+  box-sizing: border-box;
+}
+
+/* box size reset */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -17,12 +25,17 @@ h1 {
   font-size: 4rem;
 }
 
+h2 {
+  font-family: 'Quando', Times, serif;
+  font-size: 3rem;
+}
+
 p {
-  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
 
 a {
+  color: white;
   text-decoration: none;
 }
 
@@ -48,7 +61,32 @@ button {
   font-size: 0.8rem;
 }
 
+.highlight-btn {
+  background: var(--yellow);
+}
+
 :root {
   --blue: #699bfc;
   --yellow: #f7b82b;
+}
+
+input:focus,
+button:focus,
+select:focus {
+  outline: 0;
+}
+
+input,
+select,
+textarea {
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid white;
+  padding: 5px;
+  color: white;
+  font-size: 1rem;
 }
