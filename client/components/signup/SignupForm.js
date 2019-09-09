@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
-import history from '../../history'
 import {Formik} from 'formik'
 import styled from 'styled-components'
 import SignupEmail from './SignupEmail'
 import SignupPass from './SignupPass'
-import SignupOAuth from './SignupOAuth'
 import SignupSuccess from './SignupSuccess'
 import validate from './validate'
 
@@ -41,7 +40,7 @@ const SignupForm = () => {
   }
 
   return (
-    <div>
+    <StyledForm>
       <Formik
         initialValues={formValues}
         validate={validate[step]}
@@ -64,13 +63,20 @@ const SignupForm = () => {
                 handleBlur={handleBlur}
               />
             )}
+            {step === 3 && <SignupSuccess />}
             {step < 2 && <button type="submit">next</button>}
             {step === 2 && <button type="submit">submit</button>}
-            {step === 3 && <SignupSuccess />}
+            {step === 3 && (
+              <div id="signup-success">
+                <Link to="/login">
+                  <button type="submit">next</button>
+                </Link>
+              </div>
+            )}
           </form>
         )}
       />
-    </div>
+    </StyledForm>
   )
 }
 
@@ -78,5 +84,24 @@ export default SignupForm
 
 const StyledForm = styled.div`
   height: 100%;
-  padding: 120px;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-left: 4rem;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  #signup-success {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #signup-success button {
+    background-color: var(--yellow);
+  }
 `

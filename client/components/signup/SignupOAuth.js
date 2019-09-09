@@ -1,12 +1,16 @@
 import React from 'react'
+import styled from 'styled-components'
 
 const SignupOAuth = props => {
   return (
-    <div>
-      <p>Or to make things easier maybe log in with these guys</p>
+    <StyledOAuth>
       <a href="/auth/google">Google</a>
-    </div>
+    </StyledOAuth>
   )
 }
 
 export default SignupOAuth
+
+const StyledOAuth = styled.div`
+  color: white;
+`

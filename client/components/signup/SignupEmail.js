@@ -1,11 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import {StyledFormItem} from './styledFormItem'
+import SignupOAuth from './SignupOAuth'
 
 const SignupEmail = props => {
   const {values, handleChange, errors} = props
 
   return (
-    <StyledEmail>
+    <StyledFormItem>
       <div>
         <label htmlFor="email">Let's get you goin', what's your email?</label>
         <input
@@ -15,32 +16,16 @@ const SignupEmail = props => {
           type="text"
           onChange={handleChange}
         />
-        {errors.email && <div style={{color: 'red'}}>{errors.email}</div>}
+        {errors.email && (
+          <span style={{marginLeft: 0, color: 'red'}}>{errors.email}</span>
+        )}
       </div>
-      <p>Or to make things simpler, maybe log in with these guys</p>
-    </StyledEmail>
+      <p style={{marginTop: '2rem'}}>
+        Or to make things simpler, maybe log in with these guys
+      </p>
+      <SignupOAuth />
+    </StyledFormItem>
   )
 }
 
 export default SignupEmail
-
-const StyledEmail = styled.div`
-  div > * {
-    margin-bottom: 2rem;
-  }
-
-  input {
-    width: 100%;
-  }
-
-  p {
-    margin-left: 16px;
-  }
-
-  .next-btn {
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-`

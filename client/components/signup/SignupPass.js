@@ -1,11 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+import {StyledFormItem} from './styledFormItem'
 
 const SignupPass = props => {
   const {values, handleChange, errors} = props
 
   return (
-    <StyledPass>
+    <StyledFormItem>
       <div>
         <label htmlFor="password">Set up your password</label>
         <input
@@ -15,31 +15,12 @@ const SignupPass = props => {
           type="password"
           onChange={handleChange}
         />
-        {errors.password && <div style={{color: 'red'}}>{errors.password}</div>}
+        {errors.password && (
+          <span style={{margin: 0, color: 'red'}}>{errors.password}</span>
+        )}
       </div>
-    </StyledPass>
+    </StyledFormItem>
   )
 }
 
 export default SignupPass
-
-const StyledPass = styled.div`
-  div > * {
-    margin-bottom: 2rem;
-  }
-
-  input {
-    width: 100%;
-  }
-
-  p {
-    margin-left: 16px;
-  }
-
-  .next-btn {
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
-`

@@ -34,7 +34,11 @@ const Routes = props => {
 }
 
 /**
+ *
  * CONTAINER
+ *
+ * While the presence of Redux in 2019 grosses me out, I can't be assed to refactor this. Live and let live my guy
+ *
  */
 const mapState = state => {
   return {
