@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import {auth} from '../store'
 import styled from 'styled-components'
 import {SignupHeader, SignupForm} from '../components/signup'
 
-/**
- * COMPONENT
- */
 const Signup = props => {
   const {handleSubmit, error} = props
 
@@ -23,16 +19,6 @@ const Signup = props => {
 }
 
 export default Signup
-
-/**
- * PROP TYPES
- */
-// Signup.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   displayName: PropTypes.string.isRequired,
-//   handleSubmit: PropTypes.func.isRequired,
-//   error: PropTypes.object
-// }
 
 const StyledSignup = styled.div`
   width: 100vw;
