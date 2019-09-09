@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import axios from 'axios'
+import history from '../../history'
 import {Formik} from 'formik'
 import styled from 'styled-components'
 import SignupEmail from './SignupEmail'
@@ -19,8 +21,14 @@ const SignupForm = () => {
     setValues(values)
   }
 
-  const onSubmit = values => {
-    alert(JSON.stringify(values, null, 2))
+  const onSubmit = async values => {
+    const {email, password} = values
+    try {
+      const res = await axios.post(`/auth/signup`, {email, password})
+      console.log(res.data)
+    } catch (authError) {
+      console.error(authError)
+    }
   }
 
   const handleSubmit = (values, bag) => {
@@ -59,13 +67,6 @@ const SignupForm = () => {
             {step < 2 && <button type="submit">next</button>}
             {step === 2 && <button type="submit">submit</button>}
             {step === 3 && <SignupSuccess />}
-            <hr />
-            state
-            <pre>{JSON.stringify(formValues, null, 2)}</pre>
-            formValues
-            <pre>{JSON.stringify(values, null, 2)}</pre>
-            errors
-            <pre>{JSON.stringify(errors, null, 2)}</pre>
           </form>
         )}
       />
