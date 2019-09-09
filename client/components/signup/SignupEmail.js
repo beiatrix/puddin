@@ -2,21 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SignupEmail = props => {
-  const {handleChange, handleSubmit, error} = props
+  const {values, handleChange, errors} = props
 
   return (
     <StyledEmail>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Let's get you goin', what's your email?</label>
-          <input name="email" type="text" onChange={handleChange} />
-        </div>
-        {error && error.response && <div> {error.response.data}</div>}
-        <p>Or to make things simpler, maybe log in with these guys</p>
-        <div className="next-btn">
-          <button type="submit">Next</button>
-        </div>
-      </form>
+      <div>
+        <label htmlFor="email">Let's get you goin', what's your email?</label>
+        <input
+          name="email"
+          id="email"
+          value={values.email}
+          type="text"
+          onChange={handleChange}
+        />
+        {errors.email && <div style={{color: 'red'}}>{errors.email}</div>}
+      </div>
+      <p>Or to make things simpler, maybe log in with these guys</p>
     </StyledEmail>
   )
 }

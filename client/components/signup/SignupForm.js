@@ -1,59 +1,76 @@
 import React, {useState} from 'react'
+import {Formik} from 'formik'
 import styled from 'styled-components'
 import SignupEmail from './SignupEmail'
 import SignupPass from './SignupPass'
 import SignupOAuth from './SignupOAuth'
 import SignupSuccess from './SignupSuccess'
+import validate from './validate'
 
-const SignupForm = props => {
+const SignupForm = () => {
   const [step, setStep] = useState(1)
-  const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
-  const {name, handleSubmit, error} = props
-  const values = {email, pass}
+  const [formValues, setValues] = useState({
+    email: '',
+    password: ''
+  })
 
-  const nextStep = () => {
+  const next = values => {
     setStep(step + 1)
+    setValues(values)
   }
 
-  const prevStep = () => {
-    setStep(step - 1)
+  const onSubmit = values => {
+    alert(JSON.stringify(values, null, 2))
   }
 
-  const handleChange = input => event => {
-    if (input === 'email') {
-      setEmail(event.target.value)
-    } else if (input === 'pass') {
-      setPass(event.target.value)
+  const handleSubmit = (values, bag) => {
+    next(values)
+    if (step === 2) {
+      return onSubmit(values)
+    } else {
+      bag.setSubmitting(false)
     }
   }
 
-  switch (step) {
-    case 1:
-      return (
-        <StyledForm>
-          <SignupEmail
-            handleSubmit={nextStep}
-            handleChange={handleChange}
-            values={values}
-          />
-        </StyledForm>
-      )
-    case 2:
-      return (
-        <StyledForm>
-          <SignupPass
-            handleSubmit={handleSubmit}
-            prevStep={prevStep}
-            handleChange={handleChange}
-            values={values}
-          />
-        </StyledForm>
-      )
-    case 3:
-      return <SignupSuccess />
-    // <SignupOAuth />
-  }
+  return (
+    <div>
+      <Formik
+        initialValues={formValues}
+        validate={validate[step]}
+        onSubmit={handleSubmit}
+        render={({values, errors, handleChange, handleBlur, handleSubmit}) => (
+          <form onSubmit={handleSubmit}>
+            {step === 1 && (
+              <SignupEmail
+                values={values}
+                errors={errors}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            )}
+            {step === 2 && (
+              <SignupPass
+                values={values}
+                errors={errors}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+              />
+            )}
+            {step < 2 && <button type="submit">next</button>}
+            {step === 2 && <button type="submit">submit</button>}
+            {step === 3 && <SignupSuccess />}
+            <hr />
+            state
+            <pre>{JSON.stringify(formValues, null, 2)}</pre>
+            formValues
+            <pre>{JSON.stringify(values, null, 2)}</pre>
+            errors
+            <pre>{JSON.stringify(errors, null, 2)}</pre>
+          </form>
+        )}
+      />
+    </div>
+  )
 }
 
 export default SignupForm

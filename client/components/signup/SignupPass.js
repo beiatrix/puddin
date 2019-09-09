@@ -2,20 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SignupPass = props => {
-  const {handleChange, handleSubmit, error} = props
+  const {values, handleChange, errors} = props
 
   return (
     <StyledPass>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="password">Set up your password</label>
-          <input name="password" type="password" onChange={handleChange} />
-        </div>
-        <div className="next-btn">
-          <button type="submit">Next</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+      <div>
+        <label htmlFor="password">Set up your password</label>
+        <input
+          name="password"
+          id="password"
+          value={values.password}
+          type="password"
+          onChange={handleChange}
+        />
+        {errors.password && <div style={{color: 'red'}}>{errors.password}</div>}
+      </div>
     </StyledPass>
   )
 }
