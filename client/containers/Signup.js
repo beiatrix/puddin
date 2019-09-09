@@ -15,7 +15,11 @@ const Signup = props => {
   return (
     <StyledSignup>
       <SignupHeader />
-      <SignupForm handleSubmit={handleSubmit} error={error} />
+      <SignupForm
+        className="signup-form"
+        handleSubmit={handleSubmit}
+        error={error}
+      />
     </StyledSignup>
   )
 }

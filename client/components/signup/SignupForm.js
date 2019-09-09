@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import styled from 'styled-components'
 import SignupEmail from './SignupEmail'
 import SignupPass from './SignupPass'
 import SignupOAuth from './SignupOAuth'
@@ -30,20 +31,24 @@ const SignupForm = props => {
   switch (step) {
     case 1:
       return (
-        <SignupEmail
-          handleSubmit={nextStep}
-          handleChange={handleChange}
-          values={values}
-        />
+        <StyledForm>
+          <SignupEmail
+            handleSubmit={nextStep}
+            handleChange={handleChange}
+            values={values}
+          />
+        </StyledForm>
       )
     case 2:
       return (
-        <SignupPass
-          handleSubmit={handleSubmit}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          values={values}
-        />
+        <StyledForm>
+          <SignupPass
+            handleSubmit={handleSubmit}
+            prevStep={prevStep}
+            handleChange={handleChange}
+            values={values}
+          />
+        </StyledForm>
       )
     case 3:
       return <SignupSuccess />
@@ -52,3 +57,8 @@ const SignupForm = props => {
 }
 
 export default SignupForm
+
+const StyledForm = styled.div`
+  height: 100%;
+  padding: 120px;
+`
