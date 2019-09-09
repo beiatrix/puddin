@@ -3,41 +3,24 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import styled from 'styled-components'
-import {SignupHeader} from '../components/signup'
+import {SignupHeader, SignupForm} from '../components/signup'
 
 /**
  * COMPONENT
  */
 const Signup = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const {handleSubmit, error} = props
 
+  console.log('props?', props)
   return (
     <StyledSignup>
       <SignupHeader />
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <SignupForm handleSubmit={handleSubmit} error={error} />
     </StyledSignup>
   )
 }
 
-const mapState = state => {
+const mapStateToProps = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
@@ -45,7 +28,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -57,7 +40,7 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
 
 /**
  * PROP TYPES
@@ -76,14 +59,4 @@ const StyledSignup = styled.div`
   display: flex;
   flex-direction: column;
   color: white;
-
-  input: {
-    border: none;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border-bottom: 1px solid white;
-  }
 `
